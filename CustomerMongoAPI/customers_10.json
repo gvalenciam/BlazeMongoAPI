@@ -1,0 +1,7 @@
+[
+    { "firstName" : "Cliente N1", "lastName" : "ClienteLN1", "email": "cliente1@gmail.com", "phoneNumber": "+51111111111" },
+    { "firstName" : "Cliente N2", "lastName" : "ClienteLN2", "email": "cliente2@gmail.com", "phoneNumber": "+51222222222" },
+    { "firstName" : "Cliente N3", "lastName" : "ClienteLN3", "email": "cliente3@gmail.com", "phoneNumber": "+51333333333" },
+    { "firstName" : "Cliente N4", "lastName" : "ClienteLN4", "email": "cliente4@gmail.com", "phoneNumber": "+51444444444" },
+    { "firstName" : "Cliente N5", "lastName" : "ClienteLN5", "email": "cliente5@gmail.com", "phoneNumber": "+51555555555" }
+  ]

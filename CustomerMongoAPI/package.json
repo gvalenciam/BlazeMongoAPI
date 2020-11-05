@@ -1,0 +1,25 @@
+{
+  "name": "static-web-template",
+  "version": "1.0.0",
+  "description": "Basic Web Template",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"npm run --silent reload\" \"npm run --silent test\"",
+    "reload": "nodemon ./server.js",
+    "test": "concurrently \"browserify js/index.js -o dist/js/bundle.js\" \"watchify js/index.js -o dist/js/bundle.js\" \"sass --watch sass/index.scss dist/css/style.css\"",
+    "build": "echo \"Building App\" && browserify js/index.js -o dist/js/bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.5.1"
+  },
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "reload": "^3.1.0",
+    "sass": "^1.26.8",
+    "watchify": "^3.11.1"
+  }
+}
