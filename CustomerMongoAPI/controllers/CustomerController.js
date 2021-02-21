@@ -29,30 +29,55 @@ exports.getAllCustomers = function(req, res) {
     var offset = 4;
     var limit = 4;
 
-    if (req.query) {
+    if (req.query.offset) {
+
         offset = parseInt(req.query.offset, 10);
         limit = parseInt(req.query.limit, 10);
+
+        Customer.paginate({}, {offset: offset, limit: limit}, (err, responseObject) => {
+
+            console.log(responseObject);
+    
+            if (err) return res.status(500).send({
+                message: err
+            })
+    
+            if (!responseObject.docs) return res.status(404).send({
+                message: 'No hay clientes'
+            });
+    
+            return res.status(200).send({
+                response : {
+                    customers: responseObject.docs,
+                    total: responseObject.total,
+                    limit: responseObject.limit,
+                    offset: responseObject.offset,
+                    pages: responseObject.pages
+                }
+            });
+        })
+    } else {
+        Customer.paginate({}, {offset: 0, limit: 4}, (err, responseObject) => {
+
+            console.log(responseObject);
+    
+            if (err) return res.status(500).send({
+                message: err
+            })
+    
+            if (!responseObject.docs) return res.status(404).send({
+                message: 'No hay clientes'
+            });
+    
+            return res.status(200).send({
+                response : {
+                    customers: responseObject.docs,
+                }
+            });
+        })
     }
 
-    Customer.paginate({}, {offset: offset, limit: limit}, (err, responseObject) => {
-        if (err) return res.status(500).send({
-            message: err
-        })
-
-        if (!responseObject.docs) return res.status(404).send({
-            message: 'No hay clientes'
-        });
-
-        return res.status(200).send({
-            response : {
-                customers: responseObject.docs,
-                total: responseObject.total,
-                limit: responseObject.limit,
-                offset: responseObject.offset,
-                pages: responseObject.pages
-            }
-        });
-    })
+    
 }
 
 exports.getCustomerByWord = function(req, res) {
